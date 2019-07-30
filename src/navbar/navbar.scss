@@ -1,0 +1,10 @@
+@import '../Styles/colors';
+
+.navbar-container {
+    position: fixed;
+    width: 100%;
+    height: 64px;
+    top: 0;
+    left: 0;
+    background-color: $darkest;
+}

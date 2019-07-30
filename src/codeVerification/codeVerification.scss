@@ -1,0 +1,107 @@
+@import '../Styles/colors';
+
+.verification-code-container {
+    width: 340px;
+    border-radius: 16px 16px 0 0;
+    padding-bottom: 24px;
+    background-color: $dark;
+    box-shadow: 2px 2px 64px 2px rgba(0, 0, 0, 0.1);
+
+    .verification-code-header {
+        display: inline-block;
+        box-sizing: border-box;
+        padding-left: 56px;
+        width: 100%;
+        margin-bottom: 32px;
+        border-radius: 16px 16px 0 0;
+        font-weight: 800;
+        color: $blue;
+        background-color: $darkest;
+    }
+    .verification-code-body {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 40px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: rgb(110, 150, 185);
+        div {
+            position: relative;
+            width: 100%;
+            height: 80px;
+            padding: 8px;
+            box-sizing: border-box;
+            font-size: 12px;
+            color: rgb(250, 85, 85);
+            button {
+                position: absolute;
+                font-size: 1rem;
+                font-weight: 800;
+                width: 104px;
+                height: 40px;
+                border-radius: 20px;
+                background-color: $blue;
+                color: $darkest;
+                border: none;
+                z-index: 1;
+            }
+            button:hover {
+                cursor: pointer;
+            }
+            button:focus {
+                outline: none;
+                border: none;
+            }
+
+            button::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 104px;
+                height: 40px;
+                border-radius: 20px;
+                background-color: $blue;
+                color: $darkest;
+                border: none;
+                z-index: -1;
+            }
+            button:hover::before {
+                transform: scale(1.5);
+                transition: all 1s linear;
+                opacity: 0;
+            }
+            .resend {
+                position: absolute;
+                right: 8px;
+                top: 8px;
+            }
+        }
+    }
+
+    input {
+        width: 100%;
+        height: 40px;
+        border: none;
+        outline: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-radius: 20px;
+        padding-left: 24px;
+        box-sizing: border-box;
+        color: white;
+        background-color: $dark-blue;
+    }
+    input::placeholder {
+        color: rgba(29, 160, 242, 0.4);
+        font-weight: 500;
+    }
+    input:focus {
+        background-color: rgb(0, 15, 100);
+        font-weight: 500;
+    }
+}
