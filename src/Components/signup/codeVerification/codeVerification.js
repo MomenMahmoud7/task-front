@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { GlobalContext } from '../Context/GlobalContext';
+import { GlobalContext } from '../../../Contexts/GlobalContext';
 import './codeVerification.scss';
 import * as Yup from 'yup';
 
@@ -34,7 +34,7 @@ const CodeVerification = () => {
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
-                        if (!data.error.code) {
+                        if (!data.error) {
                             handleUserStatus('emailverification');
                         } else {
                             setErrors({

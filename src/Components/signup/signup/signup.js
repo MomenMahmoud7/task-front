@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { GlobalContext } from '../Context/GlobalContext';
+import { GlobalContext } from '../../../Contexts/GlobalContext';
 import { FaTimesCircle } from 'react-icons/fa';
 import { MdPersonAdd } from 'react-icons/md';
 import * as Yup from 'yup';

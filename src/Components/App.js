@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import Body from './body/body';
-import GlobalProvider from './Context/GlobalContext';
-import { GlobalContext } from './Context/GlobalContext';
+import Body from './layout/body/body';
+import GlobalProvider from '../Contexts/GlobalContext';
+import { GlobalContext } from '../Contexts/GlobalContext';
 import Loader from 'react-loader-spinner';
 
-import Navbar from './navbar/navbar';
+import Navbar from './layout/navbar/navbar';
 
 const App = () => {
     const { pending } = useContext(GlobalContext);
