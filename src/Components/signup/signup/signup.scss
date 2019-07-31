@@ -60,6 +60,7 @@
             position: absolute;
             width: fit-content;
             height: fit-content;
+            border: none;
             right: 16px;
             top: 0px;
         }
@@ -74,7 +75,7 @@
             z-index: 2;
             padding: 12px;
             border-radius: 4px 4px 4px 0;
-            background-color: rgba(0, 15, 35, 0.7);
+            background-color: rgb(255, 255, 255);
             box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.2);
         }
         .error-icon .error-popup:after {
@@ -84,7 +85,7 @@
             top: 100%;
             height: 0;
             border-bottom: 4px solid transparent;
-            border-left: 8px solid rgba(0, 15, 35, 0.7);
+            border-left: 8px solid rgb(255, 255, 255);
         }
 
         .error-icon:hover .error-popup {
@@ -120,7 +121,8 @@
             padding: 8px;
             box-sizing: border-box;
             font-size: 12px;
-            color: rgb(250, 85, 85);
+            color: $darkest;
+            font-weight: 800;
         }
 
         button {

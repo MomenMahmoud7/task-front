@@ -2,39 +2,35 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { GlobalContext } from '../../Contexts/GlobalContext';
-import { FaTimesCircle } from 'react-icons/fa';
+import { TiInfoLarge } from 'react-icons/ti';
+import * as Yup from 'yup';
 import './signin.scss';
 
 const Signin = () => {
+    const signinSchema = Yup.object().shape({
+        email: Yup.string()
+            .email('Invalid email')
+            .required('Required'),
+        password: Yup.string()
+            .min(8, 'Wrong Password')
+            .matches(/(?=.*[A-Z])/, 'Wrong Password')
+            .matches(/(?=.*[a-z])/, 'Wrong Password')
+            .matches(/(?=.*[0-9])/, 'Wrong Password')
+            .matches(
+                /(?=.[!@#\$%\^&])/,
+                'Must contain at least one special character(?=.[!@#$%^&)'
+            )
+            .required('Required')
+    });
+
     return (
         <Formik
             initialValues={{
                 email: '',
                 password: ''
             }}
-            validate={values => {
-                let errors = {};
-                if (!values.password) errors.password = '* Required';
-                else if (!values.confirmPassword)
-                    errors.confirmPassword = '* Required';
-
-                if (!values.email) {
-                    errors.email = '* Required';
-                } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                        values.email
-                    )
-                ) {
-                    errors.email = '* Invalid email address';
-                }
-                return errors;
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
-            }}
+            validationSchema={signinSchema}
+            onSubmit={(values, { setSubmitting }) => {}}
         >
             {({ isSubmitting }) => (
                 <Form className='signin-container'>
@@ -45,16 +41,16 @@ const Signin = () => {
                         <div>
                             <Field name='email' placeholder='Email' />
                             <ErrorMessage name='email'>
-                                {(name) => (
-                                    <div>
-                                    <FaTimesCircle
-                                        size='28px'
-                                        color='red'
-                                        className='error-icon'
-                                    />
-                                    <div className='error-popup'>
-                                    {name}
-                                </div>
+                                {name => (
+                                    <div className='error-icon'>
+                                        <TiInfoLarge
+                                            size='28px'
+                                            color='white'
+                                            className='icon'
+                                        />
+                                        <div className='error-popup'>
+                                            {name}
+                                        </div>
                                     </div>
                                 )}
                             </ErrorMessage>
@@ -65,17 +61,13 @@ const Signin = () => {
                                 type='password'
                                 placeholder='Password'
                             />
-                            <ErrorMessage name='email'>
-                                {(name) => (
-                                    <div>
-                                    <FaTimesCircle
-                                        size='28px'
-                                        color='red'
-                                        className='error-icon'
-                                    />
-                                    <div className='error-popup'>
-                                    {name}
-                                </div>
+                            <ErrorMessage name='password'>
+                                {name => (
+                                    <div className='error-icon'>
+                                        <TiInfoLarge size='28px' />
+                                        <div className='error-popup'>
+                                            {name}
+                                        </div>
                                     </div>
                                 )}
                             </ErrorMessage>

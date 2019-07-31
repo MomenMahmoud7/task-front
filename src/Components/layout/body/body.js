@@ -16,8 +16,8 @@ const Body = () => {
                     exact
                     path='/phoneverification'
                     render={() =>
-                        userStatus ? (
-                            <Redirect to={`/${userStatus}`} />
+                        userStatus !== 'phoneverification' ? (
+                            <Redirect to={'/signup'} />
                         ) : (
                             <CodeVerification />
                         )
@@ -26,7 +26,13 @@ const Body = () => {
                 <Route
                     exact
                     path='/emailverification'
-                    render={() => <EmailVerification />}
+                    render={() =>
+                        userStatus !== 'emailverification' ? (
+                            <Redirect to='/signup' />
+                        ) : (
+                            <EmailVerification />
+                        )
+                    }
                 />
                 <Route exact path='/signin' render={() => <Signin />} />
                 <Route

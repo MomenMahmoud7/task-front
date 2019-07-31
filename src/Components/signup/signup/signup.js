@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { GlobalContext } from '../../../Contexts/GlobalContext';
-import { FaTimesCircle } from 'react-icons/fa';
+import { FaExclamationCircle } from 'react-icons/fa';
 import { MdPersonAdd } from 'react-icons/md';
 import * as Yup from 'yup';
 import './signup.scss';
@@ -127,9 +127,8 @@ const Signup = props => {
                             <ErrorMessage name='firstName'>
                                 {name => (
                                     <div className='error-icon'>
-                                        <FaTimesCircle
+                                        <FaExclamationCircle
                                             size='25px'
-                                            color='red'
                                         />
                                         <div className='error-popup'>
                                             {name}
@@ -143,9 +142,8 @@ const Signup = props => {
                             <ErrorMessage name='lastName'>
                                 {name => (
                                     <div className='error-icon'>
-                                        <FaTimesCircle
+                                        <FaExclamationCircle
                                             size='25px'
-                                            color='red'
                                         />
                                         <div className='error-popup'>
                                             {name}
@@ -159,9 +157,8 @@ const Signup = props => {
                             <ErrorMessage name='username'>
                                 {name => (
                                     <div className='error-icon'>
-                                        <FaTimesCircle
+                                        <FaExclamationCircle
                                             size='25px'
-                                            color='red'
                                         />
                                         <div className='error-popup'>
                                             {name}
@@ -179,9 +176,8 @@ const Signup = props => {
                             <ErrorMessage name='phoneNumber'>
                                 {name => (
                                     <div className='error-icon'>
-                                        <FaTimesCircle
+                                        <FaExclamationCircle
                                             size='25px'
-                                            color='red'
                                         />
                                         <div className='error-popup'>
                                             {name}
@@ -199,9 +195,8 @@ const Signup = props => {
                             <ErrorMessage name='password'>
                                 {name => (
                                     <div className='error-icon'>
-                                        <FaTimesCircle
+                                        <FaExclamationCircle
                                             size='25px'
-                                            color='red'
                                         />
                                         <div className='error-popup'>
                                             {name}
@@ -219,9 +214,8 @@ const Signup = props => {
                             <ErrorMessage name='confirmPassword'>
                                 {name => (
                                     <div className='error-icon'>
-                                        <FaTimesCircle
+                                        <FaExclamationCircle
                                             size='25px'
-                                            color='red'
                                         />
                                         <div className='error-popup'>
                                             {name}
@@ -235,9 +229,8 @@ const Signup = props => {
                             <ErrorMessage name='email'>
                                 {name => (
                                     <div className='error-icon'>
-                                        <FaTimesCircle
+                                        <FaExclamationCircle
                                             size='25px'
-                                            color='red'
                                         />
                                         <div className='error-popup'>
                                             {name}

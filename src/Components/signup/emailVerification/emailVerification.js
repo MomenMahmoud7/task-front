@@ -7,7 +7,7 @@ import './emailVerification.scss';
 const EmailVerification = () => {
     return (
         <>
-        <div>emailVerification</div>
+            <div>emailVerification</div>
         </>
     );
 };
