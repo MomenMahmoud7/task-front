@@ -28,14 +28,18 @@ const Body = () => {
           path='/emailverification'
           render={() =>
             userStatus !== 'emailverification' ? (
-              <Redirect to='login' />
+              <Redirect to='/login' />
             ) : (
               <EmailVerification />
             )
           }
         />
         <Route exact path='/confirmMail' component={Result} />
-        <Route exact path='/login' render={() => <Login />} />
+        <Route
+          exact
+          path='/login'
+          render={routeProps => <Login {...routeProps} />}
+        />
         <Route
           exact
           path='/signup'
