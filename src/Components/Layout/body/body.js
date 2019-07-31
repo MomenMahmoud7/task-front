@@ -1,49 +1,61 @@
-import React, { useContext } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { GlobalContext } from '../../../Contexts/GlobalContext';
-import Signup from '../../Registration/signup/signup';
-import Login from '../../Login/login';
-import CodeVerification from '../../Registration/codeVerification/codeVerification';
-import EmailVerification from '../../Registration/emailVerification/emailVerification';
-import Result from '../../VerficationResult/Result';
-
+import React, { useContext } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import { GlobalContext } from "../../../Contexts/GlobalContext";
+import Signup from "../../Registration/signup/signup";
+import Login from "../../Login/login";
+import CodeVerification from "../../Registration/codeVerification/codeVerification";
+import EmailVerification from "../../Registration/emailVerification/emailVerification";
+import Result from "../../VerficationResult/Result";
+import Home from "../../Home/home";
+import AuthenticatedRoute from "../../../HOC/AuthenticatedRoute";
+import NormalRouter from "../../../HOC/NormalRouter";
 const Body = () => {
-  const { userStatus } = useContext(GlobalContext);
+  const { userStatus, token } = useContext(GlobalContext);
   return (
-    <div style={{ marginTop: '128px' }}>
+    <div style={{ marginTop: "128px" }}>
       <Switch>
-        <Route
+        <NormalRouter
           exact
-          path='/phoneverification'
+          path="/phoneverification"
           render={() =>
-            userStatus !== 'phoneverification' ? (
-              <Redirect to='/login' />
+            userStatus !== "phoneverification" ? (
+              <Redirect to="/login" />
             ) : (
               <CodeVerification />
             )
           }
         />
-        <Route
+        <NormalRouter
           exact
-          path='/emailverification'
+          path="/emailverification"
           render={() =>
-            userStatus !== 'emailverification' ? (
-              <Redirect to='login' />
+            userStatus !== "emailverification" ? (
+              <Redirect to="login" />
             ) : (
               <EmailVerification />
             )
           }
         />
-        <Route exact path='/confirmMail' component={Result} />
-        <Route exact path='/login' render={() => <Login />} />
-        <Route
+        <NormalRouter exact path="/confirmMail" component={Result} />
+        <NormalRouter
           exact
-          path='/signup'
+          path="/login"
+          render={routeProps => <Login {...routeProps} />}
+        />
+        <NormalRouter
+          exact
+          path="/signup"
           render={() =>
             userStatus ? <Redirect to={`/${userStatus}`} /> : <Signup />
           }
         />
         )}
+        <AuthenticatedRoute
+          exact
+          path="/"
+          render={routeProps => <Home {...routeProps} />}
+        />
+        <Route />
       </Switch>
     </div>
   );
