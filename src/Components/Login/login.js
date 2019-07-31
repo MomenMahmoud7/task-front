@@ -4,11 +4,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { GlobalContext } from "../../Contexts/GlobalContext";
 import { TiInfoLarge } from "react-icons/ti";
 import * as Yup from "yup";
-import "./signin.scss";
+import "./login.scss";
 import { CLIENT_RENEG_LIMIT } from "tls";
 
-const Signin = () => {
-  const signinSchema = Yup.object().shape({
+const Login = () => {
+  const loginSchema = Yup.object().shape({
     email: Yup.string().required("Required"),
     password: Yup.string().required("Required")
   });
@@ -46,15 +46,15 @@ const Signin = () => {
         email: "",
         password: ""
       }}
-      validationSchema={signinSchema}
+      validationSchema={loginSchema}
       onSubmit={submitForm}
     >
       {({ isSubmitting }) => (
-        <Form className="signin-container">
-          <div className="signin-header">
+        <Form className="login-container">
+          <div className="login-header">
             <h1>Sign In</h1>
           </div>
-          <div className="signin-body">
+          <div className="login-body">
             <div>
               <Field name="email" placeholder="Email" />
               <ErrorMessage name="email">
@@ -91,4 +91,4 @@ const Signin = () => {
     </Formik>
   );
 };
-export default Signin;
+export default Login;
