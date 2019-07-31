@@ -6,12 +6,15 @@ const GlobalProvider = props => {
   const [pending, setPending] = useState(true);
   const [userStatus, setUserStatus] = useState("");
   const [requestId, setRequestId] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const userStatus = localStorage.getItem("userStatus");
     setUserStatus(userStatus);
     const requestId = localStorage.getItem("requestId");
     setRequestId(requestId);
+    const token = localStorage.getItem("token");
+    setToken(token);
   }, []);
 
   const handleUserStatus = userStatus => {
