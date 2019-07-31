@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { GlobalContext } from "../../../Contexts/GlobalContext";
-import Signup from "../../signup/signup/signup";
-import Signin from "../../signin/signin";
-import CodeVerification from "../../signup/codeVerification/codeVerification";
-import EmailVerification from "../../signup/emailVerification/emailVerification";
+import Signup from "../../Signup/signup/signup";
+import Signin from "../../Signin/signin";
+import CodeVerification from "../../Signup/codeVerification/codeVerification";
+import EmailVerification from "../../Signup/emailVerification/emailVerification";
 import Result from "../../VerficationResult/Result";
 const Body = () => {
   const { userStatus } = useContext(GlobalContext);
@@ -15,7 +15,7 @@ const Body = () => {
           exact
           path="/phoneverification"
           render={() =>
-            !userStatus ? (
+            userStatus ? (
               <Redirect to={`/${userStatus}`} />
             ) : (
               <CodeVerification />

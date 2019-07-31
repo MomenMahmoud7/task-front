@@ -8,9 +8,9 @@ const GlobalProvider = props => {
   const [requestId, setRequestId] = useState("");
 
   useEffect(() => {
-    const userStatus = localStorage.getItem("userStatus") || "";
+    const userStatus = localStorage.getItem("userStatus");
     setUserStatus(userStatus);
-    const requestId = localStorage.getItem("requestId") || "";
+    const requestId = localStorage.getItem("requestId");
     setRequestId(requestId);
   }, []);
 
