@@ -4,22 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { GlobalContext } from '../../Contexts/GlobalContext';
 import { TiInfoLarge } from 'react-icons/ti';
 import * as Yup from 'yup';
-import './signin.scss';
+import './login.scss';
 
-const Signin = () => {
-    const signinSchema = Yup.object().shape({
+const Login = () => {
+    const loginSchema = Yup.object().shape({
         email: Yup.string()
             .email('Invalid email')
-            .required('Required'),
-        password: Yup.string()
-            .min(8, 'Wrong Password')
-            .matches(/(?=.*[A-Z])/, 'Wrong Password')
-            .matches(/(?=.*[a-z])/, 'Wrong Password')
-            .matches(/(?=.*[0-9])/, 'Wrong Password')
-            .matches(
-                /(?=.[!@#\$%\^&])/,
-                'Must contain at least one special character(?=.[!@#$%^&)'
-            )
             .required('Required')
     });
 
@@ -29,15 +19,15 @@ const Signin = () => {
                 email: '',
                 password: ''
             }}
-            validationSchema={signinSchema}
+            validationSchema={loginSchema}
             onSubmit={(values, { setSubmitting }) => {}}
         >
             {({ isSubmitting }) => (
-                <Form className='signin-container'>
-                    <div className='signin-header'>
+                <Form className='login-container'>
+                    <div className='login-header'>
                         <h1>Sign In</h1>
                     </div>
-                    <div className='signin-body'>
+                    <div className='login-body'>
                         <div>
                             <Field name='email' placeholder='Email' />
                             <ErrorMessage name='email'>
@@ -61,16 +51,6 @@ const Signin = () => {
                                 type='password'
                                 placeholder='Password'
                             />
-                            <ErrorMessage name='password'>
-                                {name => (
-                                    <div className='error-icon'>
-                                        <TiInfoLarge size='28px' />
-                                        <div className='error-popup'>
-                                            {name}
-                                        </div>
-                                    </div>
-                                )}
-                            </ErrorMessage>
                         </div>
                         <div>
                             <button type='submit' disabled={isSubmitting}>
@@ -86,4 +66,4 @@ const Signin = () => {
         </Formik>
     );
 };
-export default Signin;
+export default Login;
