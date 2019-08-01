@@ -5,16 +5,17 @@ import Signup from "../../Registration/signup/signup";
 import Login from "../../Login/login";
 import CodeVerification from "../../Registration/codeVerification/codeVerification";
 import EmailVerification from "../../Registration/emailVerification/emailVerification";
-import Result from "../../VerficationResult/Result";
+import Result from "../../Registration/verificationResult/verificationResult";
 import Home from "../../Home/home";
-import AuthenticatedRoute from "../../../Wrappers/AuthenticatedRoute";
-import NormalRouter from "../../../Wrappers/NormalRouter";
+import AuthenticatedRoute from "../../../Routes/AuthenticatedRoute";
+import NormalRoute from "../../../Routes/NormalRoute";
+
 const Body = () => {
   const { userStatus, token } = useContext(GlobalContext);
   return (
     <div style={{ marginTop: "128px" }}>
       <Switch>
-        <NormalRouter
+        <NormalRoute
           exact
           path="/phoneverification"
           render={() =>
@@ -25,7 +26,7 @@ const Body = () => {
             )
           }
         />
-        <NormalRouter
+        <NormalRoute
           exact
           path="/emailverification"
           render={() =>
@@ -36,13 +37,13 @@ const Body = () => {
             )
           }
         />
-        <NormalRouter exact path="/confirmMail" component={Result} />
-        <NormalRouter
+        <NormalRoute exact path="/confirmMail" component={Result} />
+        <NormalRoute
           exact
           path="/login"
           render={routeProps => <Login {...routeProps} />}
         />
-        <NormalRouter
+        <NormalRoute
           exact
           path="/signup"
           render={() =>
@@ -55,7 +56,6 @@ const Body = () => {
           path="/"
           render={routeProps => <Home {...routeProps} />}
         />
-        <Route />
       </Switch>
     </div>
   );

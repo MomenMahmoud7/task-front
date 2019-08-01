@@ -34,15 +34,10 @@ function Home(props) {
     fetchPosts();
   }, []);
   return (
-    <div>
+    <>
       {pending ? (
         <div className="loader">
-          <Loader
-            type="CradleLoader"
-            color="#00BFFF"
-            height="100"
-            width="100"
-          />
+          <Loader type="Puff" color="#00BFFF" />
         </div>
       ) : (
         <>
@@ -60,7 +55,7 @@ function Home(props) {
           })}
         </>
       )}
-    </div>
+    </>
   );
 }
 

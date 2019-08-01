@@ -65,8 +65,6 @@ const Signup = props => {
       validationSchema={signupSchema}
       onSubmit={(values, { setSubmitting, setErrors }) => {
         setSubmitting(false);
-        // handleUserStatus('phoneVerification');
-        // handleRequestId('15468641');
         const {
           firstName,
           lastName,
@@ -93,7 +91,6 @@ const Signup = props => {
         })
           .then(response => response.json())
           .then(data => {
-            console.log(data);
             if (!data.error) {
               handleUserStatus("phoneVerification");
               handleRequestId(data.requestID);
@@ -218,7 +215,7 @@ const Signup = props => {
             </div>
             <div />
             Already have an account? &nbsp;&nbsp;
-            <Link to="/signin">Sign In</Link> &nbsp;
+            <Link to="/login">Log In</Link> &nbsp;
           </div>
         </Form>
       )}
