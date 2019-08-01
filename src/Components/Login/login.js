@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { GlobalContext } from '../../Contexts/GlobalContext';
-import { TiInfoLarge } from 'react-icons/ti';
+import { TiWarning } from 'react-icons/ti';
 import * as Yup from 'yup';
 import './login.scss';
 
@@ -60,7 +60,7 @@ const Login = props => {
       {({ isSubmitting }) => (
         <Form className='login-container'>
           <div className='login-header'>
-            <h1>Sign In</h1>
+            <h1>Log In</h1>
           </div>
           <div className='login-body'>
             <div>
@@ -68,7 +68,7 @@ const Login = props => {
               <ErrorMessage name='email'>
                 {name => (
                   <div className='error-icon'>
-                    <TiInfoLarge size='28px' color='darkred' />
+                    <TiWarning size='28px' color='white' />
                     <div className='error-popup'>{name}</div>
                   </div>
                 )}
@@ -79,7 +79,7 @@ const Login = props => {
               <ErrorMessage name='password'>
                 {name => (
                   <div className='error-icon'>
-                    <TiInfoLarge size='28px' color='darkred' />
+                    <TiWarning size='28px' color='white' />
                     <div className='error-popup'>{name}</div>
                   </div>
                 )}
@@ -90,7 +90,7 @@ const Login = props => {
             </div>
             <div>
               <button type='submit' disabled={isSubmitting}>
-                Sign In
+                Log In
               </button>
             </div>
             Don't have an account? &nbsp;&nbsp;

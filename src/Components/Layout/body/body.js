@@ -5,14 +5,17 @@ import Signup from '../../Registration/signup/signup';
 import Login from '../../Login/login';
 import CodeVerification from '../../Registration/codeVerification/codeVerification';
 import EmailVerification from '../../Registration/emailVerification/emailVerification';
-import Result from '../../VerficationResult/Result';
+import Result from '../../Registration/verificationResult/verificationResult';
+import Home from '../../Home/home';
+import AuthenticatedRoute from '../../../Routes/AuthenticatedRoute';
+import NormalRoute from '../../../Routes/NormalRoute';
 
 const Body = () => {
-  const { userStatus } = useContext(GlobalContext);
+  const { userStatus, token } = useContext(GlobalContext);
   return (
     <div style={{ marginTop: '128px' }}>
       <Switch>
-        <Route
+        <NormalRoute
           exact
           path='/phoneverification'
           render={() =>
@@ -23,24 +26,24 @@ const Body = () => {
             )
           }
         />
-        <Route
+        <NormalRoute
           exact
           path='/emailverification'
           render={() =>
             userStatus !== 'emailverification' ? (
-              <Redirect to='/login' />
+              <Redirect to='login' />
             ) : (
               <EmailVerification />
             )
           }
         />
-        <Route exact path='/confirmMail' component={Result} />
-        <Route
+        <NormalRoute exact path='/confirmMail' component={Result} />
+        <NormalRoute
           exact
           path='/login'
           render={routeProps => <Login {...routeProps} />}
         />
-        <Route
+        <NormalRoute
           exact
           path='/signup'
           render={() =>
@@ -48,6 +51,11 @@ const Body = () => {
           }
         />
         )}
+        <AuthenticatedRoute
+          exact
+          path='/'
+          render={routeProps => <Home {...routeProps} />}
+        />
       </Switch>
     </div>
   );

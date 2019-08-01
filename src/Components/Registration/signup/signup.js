@@ -215,7 +215,7 @@ const Signup = props => {
             </div>
             <div />
             Already have an account? &nbsp;&nbsp;
-            <Link to="/signin">Sign In</Link> &nbsp;
+            <Link to="/login">Log In</Link> &nbsp;
           </div>
         </Form>
       )}

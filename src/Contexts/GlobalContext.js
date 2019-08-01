@@ -3,19 +3,19 @@ import React, { createContext, useState, useEffect } from "react";
 export const GlobalContext = createContext({});
 
 const GlobalProvider = props => {
+  const prevToken = localStorage.getItem("token") || "";
   const [pending, setPending] = useState(true);
   const [userStatus, setUserStatus] = useState("");
   const [requestId, setRequestId] = useState("");
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(prevToken);
 
   useEffect(() => {
     const userStatus = localStorage.getItem("userStatus");
     setUserStatus(userStatus);
     const requestId = localStorage.getItem("requestId");
     setRequestId(requestId);
-    const token = localStorage.getItem("token");
-    setToken(token);
-  }, []);
+    localStorage.setItem("token", prevToken);
+  }, [token]);
 
   const handleUserStatus = userStatus => {
     setUserStatus(userStatus);
@@ -25,6 +25,10 @@ const GlobalProvider = props => {
     setRequestId(requestId);
     localStorage.setItem("requestId", requestId);
   };
+  const handleToken = token => {
+    setToken(token);
+    localStorage.setItem("token", token);
+  };
 
   return (
     <GlobalContext.Provider
@@ -33,7 +37,10 @@ const GlobalProvider = props => {
         userStatus,
         handleUserStatus,
         requestId,
-        handleRequestId
+        handleRequestId,
+        token,
+        handleToken,
+        setPending
       }}
     >
       {props.children}
