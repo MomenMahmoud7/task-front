@@ -7,8 +7,8 @@ import CodeVerification from "../../Registration/codeVerification/codeVerificati
 import EmailVerification from "../../Registration/emailVerification/emailVerification";
 import Result from "../../VerficationResult/Result";
 import Home from "../../Home/home";
-import AuthenticatedRoute from "../../../HOC/AuthenticatedRoute";
-import NormalRouter from "../../../HOC/NormalRouter";
+import AuthenticatedRoute from "../../../Wrappers/AuthenticatedRoute";
+import NormalRouter from "../../../Wrappers/NormalRouter";
 const Body = () => {
   const { userStatus, token } = useContext(GlobalContext);
   return (

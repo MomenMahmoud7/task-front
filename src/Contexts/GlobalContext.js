@@ -4,7 +4,6 @@ export const GlobalContext = createContext({});
 
 const GlobalProvider = props => {
   const prevToken = localStorage.getItem("token") || "";
-  const [pending, setPending] = useState(true);
   const [userStatus, setUserStatus] = useState("");
   const [requestId, setRequestId] = useState("");
   const [token, setToken] = useState(prevToken);
@@ -33,14 +32,12 @@ const GlobalProvider = props => {
   return (
     <GlobalContext.Provider
       value={{
-        pending,
         userStatus,
         handleUserStatus,
         requestId,
         handleRequestId,
         token,
-        handleToken,
-        setPending
+        handleToken
       }}
     >
       {props.children}
