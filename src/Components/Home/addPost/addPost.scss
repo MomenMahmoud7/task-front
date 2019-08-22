@@ -1,0 +1,103 @@
+@import '../../../Styles/colors';
+
+.add-post-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: fit-content;
+  box-sizing: border-box;
+  border-radius: 16px;
+  width: 640px;
+  margin-bottom: 32px;
+  background-color: $secondary;
+  box-shadow: 2px 2px 32px 2px rgba(0, 0, 0, 0.1);
+
+  .add-post-header {
+    color: white;
+    z-index: 2;
+    background: $dark;
+    padding: 16px 32px;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  textarea {
+    height: 64px;
+    font-size: 1rem;
+    border: 0;
+    resize: none;
+    outline: none;
+    padding: 16px 32px;
+    background-color: $secondary;
+  }
+  textarea:focus {
+    background: $shadow;
+    background-color: rgb(165, 205, 220);
+  }
+
+  .button-container {
+    padding: 16px 32px;
+    button {
+      display: flex;
+      box-sizing: border-box;
+      padding: 0;
+      box-shadow: 0 0 0 0;
+      height: 40px;
+      background: none;
+      border: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      svg {
+        color: $primary;
+        margin: 0;
+      }
+      .button-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 40px;
+        height: 40px;
+        border-radius: 0 20px 20px 0;
+        margin: 0;
+        border: 0;
+        background: $dark;
+        .loader {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 24px !important;
+        }
+      }
+      .button-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        height: 40px;
+        width: max-content;
+        min-width: 64px;
+        padding: 16px;
+        background: $primary;
+        border-radius: 20px 0 0 20px;
+        transition-duration: 0.5s;
+      }
+    }
+    button:hover {
+      cursor: pointer;
+      .button-action {
+        background: $dark;
+        color: $primary;
+      }
+    }
+
+    button:focus {
+      outline: none;
+      border: none;
+    }
+  }
+}
+@media (max-width: 785px) {
+  .add-post-container {
+    width: 340px;
+  }
+}

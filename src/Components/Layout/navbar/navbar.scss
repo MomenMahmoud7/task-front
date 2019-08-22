@@ -1,6 +1,7 @@
 @import '../../../Styles/colors';
 
 .navbar-container {
+  box-sizing: border-box;
   position: fixed;
   display: flex;
   align-items: center;
@@ -8,10 +9,172 @@
   height: 64px;
   top: 0;
   left: 0;
-  z-index: 5;
-  background-color: $darkest;
-  .navbar-right {
+  z-index: 4;
+  padding: 0 10%;
+  background: $dark;
+  box-shadow: 2px 2px 32px 2px rgba(0, 0, 0, 0.1);
+  .menu-right {
+    display: flex;
+    align-items: center;
     position: absolute;
-    right: 0;
+    height: 100%;
+    right: 10%;
   }
+}
+
+.menu {
+  display: flex;
+  margin: 0;
+  padding-left: 0;
+  height: 100%;
+  a {
+    text-decoration: none;
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  float: left;
+  padding: 0 16px;
+  height: 100%;
+  background: $dark;
+  transition-duration: 0.5s;
+  a {
+    color: white;
+  }
+}
+.menu-item:hover {
+  a {
+    color: $primary;
+  }
+  cursor: pointer;
+}
+
+.website-logo {
+  a {
+    font-size: 1.2rem;
+    color: $primary;
+  }
+  svg {
+    color: $primary;
+  }
+}
+.website-logo:hover {
+  background: $dark;
+}
+
+.dropdown-menu:hover {
+  background: $dark;
+  svg {
+    fill: $primary;
+  }
+  cursor: pointer;
+}
+
+.menu .menu-item .dropdown {
+  background: $secondary;
+  color: $dark;
+  visibility: hidden;
+  opacity: 0;
+  min-width: 8rem;
+  position: absolute;
+  transition: all 0.5s ease;
+  box-shadow: 2px 2px 32px 2px rgba(0, 0, 0, 0.1);
+  top: 100%;
+  right: 0;
+  display: none;
+}
+
+.menu .menu-item:hover > .dropdown,
+.menu .menu-item .dropdown:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+.menu .menu-item .dropdown .dropdown-item {
+  clear: both;
+  padding: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.menu .menu-item .dropdown .dropdown-item:hover {
+  color: $primary;
+  background: $dark;
+}
+
+.dropdown-body {
+  display: flex;
+  width: max-content;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 16px;
+  font-size: 0.8rem;
+  a {
+    width: 100%;
+    color: $primary;
+    height: fit-content;
+  }
+  a:hover {
+    color: $dark;
+  }
+  button {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0;
+    margin-bottom: 16px;
+    height: fit-content;
+    background: none;
+    border: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    svg {
+      color: $primary;
+    }
+    .button-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      border-radius: 0 20px 20px 0;
+      background: $dark;
+    }
+    .button-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      height: 40px;
+      width: 100%;
+      min-width: 80px;
+      padding: 16px;
+      background: $primary;
+      border-radius: 20px 0 0 20px;
+      transition-duration: 0.5s;
+    }
+  }
+  button:hover {
+    cursor: pointer;
+    .button-action {
+      background: $dark;
+      color: $primary;
+    }
+  }
+
+  button:focus {
+    outline: none;
+    border: none;
+  }
+}
+.dropdown-body {
+  cursor: auto;
 }

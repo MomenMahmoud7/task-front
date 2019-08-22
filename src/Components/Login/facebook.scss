@@ -1,0 +1,26 @@
+.facebook-button {
+  position: relative;
+  border: 0;
+  background: #263962;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  width: 240px;
+  height: 40px;
+  padding-left: 40px;
+  border-radius: 20px;
+  outline: none;
+  transition-duration: 0.5s;
+  svg {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    color: white;
+  }
+}
+.facebook-button:hover {
+  cursor: pointer;
+  background: #30477a;
+}

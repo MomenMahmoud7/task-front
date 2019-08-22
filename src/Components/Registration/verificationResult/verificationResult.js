@@ -1,32 +1,41 @@
-import React, { useState, useEffect } from "react";
-import queryString from "query-string";
+import React, { useState, useEffect, useContext } from 'react';
+import queryString from 'query-string';
+import Loader from 'react-loader-spinner';
+import { GlobalContext } from '../../../Contexts/GlobalContext';
+import './verificationResult.scss';
+import axios from 'axios';
 
-export default function Result(props) {
-  const [tokenStatus, setTokenStatus] = useState("waiting");
-
-  const callAPI = async () => {
-    const query = props.location.search;
-    const values = query ? queryString.parse(props.location.search) : "";
-    const token = values ? values.emailToken : "";
-
-    const res = await fetch(
-      `https://api-lb.herokuapp.com/api/users/confirmEmail?emailToken=${token}`
-    );
-
-    const data = await res.json();
-
-    if (data.error) {
-      const code = data.error.code;
-      if (code === "EXPIRED_TOKEN") setTokenStatus("Code is expired");
-      else setTokenStatus("Code is incorrect");
-    } else {
-      setTokenStatus("verified");
-      setTimeout(() => props.history.push("/signin"), 300);
-    }
-  };
+export default function VerificationResult(props) {
+  const { handleSignupStatus } = useContext(GlobalContext);
+  const [tokenStatus, setTokenStatus] = useState('waiting');
 
   useEffect(() => {
-    callAPI();
+    const fetchData = async () => {
+      const query = props.location.search;
+      const values = query ? queryString.parse(props.location.search) : null;
+      const token = values ? values.emailToken : null;
+      try {
+        await axios.get(
+          `https://api-lb.herokuapp.com/api/users/verification-result?emailToken=${token}`
+        );
+        props.history.push('/email-verified');
+        setTokenStatus('verified');
+        handleSignupStatus('verified');
+      } catch (error) {
+        props.history.push('/email-verification-error');
+        setTokenStatus('error');
+      }
+    };
+    fetchData();
   }, []);
-  return <h1>{tokenStatus}</h1>;
+
+  return (
+    <>
+      {tokenStatus === 'waiting' ? (
+        <div className='loader-container'>
+          <Loader type='Puff' color='#00BFFF' />
+        </div>
+      ) : null}
+    </>
+  );
 }

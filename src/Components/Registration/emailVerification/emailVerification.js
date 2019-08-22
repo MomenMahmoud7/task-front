@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { GlobalContext } from '../../../Contexts/GlobalContext';
+import React from 'react';
 import './emailVerification.scss';
 
 const EmailVerification = () => {
-    return (
-        <>
-            <div>emailVerification</div>
-        </>
-    );
+  return (
+    <div className='email-verification-container '>
+      <h1>Email address verification</h1>
+      <p>
+        Please verify the email address that you have provided for sign up in
+        order for us to activate your account. We've sent you an email with
+        instructions.
+      </p>
+      <div className='image-container'>
+        <div className='image' />
+      </div>
+    </div>
+  );
 };
 export default EmailVerification;

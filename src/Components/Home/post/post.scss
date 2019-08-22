@@ -1,0 +1,41 @@
+@import '../../../Styles/colors';
+
+.post-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: fit-content;
+  box-sizing: border-box;
+  width: 640px;
+  border-radius: 16px;
+  margin-bottom: 8px;
+  background-color: $secondary;
+  box-shadow: 2px 2px 32px 2px rgba(0, 0, 0, 0.1);
+  .post-header {
+    display: flex;
+    align-items: center;
+    padding: 16px 32px;
+    background: $dark;
+    font-weight: 600;
+    color: white;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    .username {
+      padding: 0;
+      padding-left: 16px;
+      color: $secondary;
+      // font-weight: 400;
+      font-size: 0.9rem;
+    }
+  }
+  .post-body {
+    padding: 32px;
+    height: fit-content;
+    border-radius: 0 0 16px 16px;
+  }
+}
+@media (max-width: 785px) {
+  .post-container {
+    width: 340px;
+  }
+}

@@ -1,182 +1,239 @@
 @import '../../../Styles/colors';
 
 .signup-container {
-    width: 560px;
-    border-radius: 16px 16px 0 0;
-    padding-bottom: 24px;
-    background-color: $dark;
-    box-shadow: 2px 2px 64px 2px rgba(0, 0, 0, 0.1);
+  width: 664px;
+  height: fit-content;
+  border-radius: 16px 16px 0 0;
+  padding-bottom: 24px;
+  background-color: $secondary;
+  box-shadow: 2px 2px 64px 2px rgba(0, 0, 0, 0.1);
 }
-
 @media (max-width: 785px) {
-    .signup-container {
-        width: 340px;
+  .signup-container {
+    width: 340px;
+    .signup-body {
+      .input-container {
+        width: 100%;
+        padding: 0;
+      }
     }
-    .signup-header {
-        p {
-            width: 228px;
-            overflow-wrap: break-word;
-        }
+  }
+  .signup-header {
+    p {
+      width: 228px;
+      overflow-wrap: break-word;
     }
+  }
 }
 
 .signup-header {
-    display: inline-block;
-    box-sizing: border-box;
-    padding-left: 56px;
-    width: 100%;
-    margin-bottom: 32px;
-    border-radius: 16px 16px 0 0;
-    font-weight: 800;
-    color: $blue;
-    background-color: $darkest;
-    p {
-        color: rgb(110, 150, 185);
-        font-weight: 500;
-        font-size: 0.9rem;
-    }
+  display: inline-block;
+  box-sizing: border-box;
+  padding-left: 56px;
+  width: 100%;
+  margin-bottom: 32px;
+  border-radius: 16px 16px 0 0;
+  font-weight: 800;
+  color: $primary;
+  background-color: $dark;
+  p {
+    color: $secondary;
+    font-size: 0.8rem;
+  }
 }
 
 .signup-body {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 40px;
+  font-size: 0.8rem;
+
+  .input-container {
+    position: relative;
+    width: 292px;
+    height: 72px;
+    padding: 0 16px;
     box-sizing: border-box;
-    width: 100%;
-    padding: 0 40px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: rgb(110, 150, 185);
 
-    div {
-        position: relative;
-        width: 240px;
-        height: 72px;
-        padding: 0 16px;
+    input {
+      width: 100%;
+      height: 40px;
+      border: none;
+      outline: none;
+      font-size: 0.8rem;
+      border-radius: 20px;
+      padding-left: 24px;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      background-color: $shadow;
+    }
+
+    .error-icon {
+      position: absolute;
+      width: fit-content;
+      height: fit-content;
+      border: none;
+      right: 8px;
+      top: 8px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: $dark;
+    }
+    .error-icon .error-popup {
+      visibility: hidden;
+      position: absolute;
+      width: max-content;
+      height: fit-content !important;
+      left: 50%;
+      bottom: 110%;
+      z-index: 2;
+      padding: 12px;
+      border-radius: 4px;
+      background-color: pink;
+      box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .error-icon .warning {
+      background-color: lightyellow;
+    }
+
+    .error-icon:hover .error-popup {
+      visibility: visible;
+    }
+    button {
+      display: flex;
+      box-sizing: border-box;
+      padding: 0;
+      height: fit-content;
+      background: none;
+      border: none;
+      width: 100%;
+      font-weight: 700;
+      font-size: 0.9rem;
+      svg {
+        color: $primary;
+      }
+      .button-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
         box-sizing: border-box;
+        width: 48px;
+        height: 40px;
+        border-radius: 20px 0 0 20px;
+        background: $dark;
+      }
+      .button-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        height: 40px;
+        width: 100%;
+        min-width: 80px;
+        padding: 16px;
+        background: $primary;
+        border-radius: 0 20px 20px 0;
+        transition-duration: 0.5s;
+      }
+    }
+    button:hover {
+      cursor: pointer;
+      .button-action {
+        background: $dark;
+        color: $primary;
+      }
+    }
 
-        .error-icon {
-            position: absolute;
-            width: fit-content;
-            height: fit-content;
-            border: none;
-            right: 16px;
-            top: 0px;
+    button:focus {
+      outline: none;
+      border: none;
+    }
+  }
+  .upload-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    button {
+      .button-action {
+        border-radius: 20px 0 0 20px;
+        background: $dark;
+        color: $primary;
+      }
+      .button-label {
+        background: $primary;
+        border-radius: 0 20px 20px 0;
+        svg {
+          transition-duration: 0.5s;
+          color: $dark;
         }
-        .error-icon .error-popup {
-            visibility: hidden;
-            position: absolute;
-            display: inline-block;
-            height: fit-content !important;
-            width: fit-content !important;
-            left: 50%;
-            bottom: 90%;
-            z-index: 2;
-            padding: 12px;
-            border-radius: 4px 4px 4px 0;
-            background-color: rgb(255, 255, 255);
-            box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.2);
-        }
-        .error-icon .error-popup:after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 100%;
-            height: 0;
-            border-bottom: 4px solid transparent;
-            border-left: 8px solid rgb(255, 255, 255);
-        }
-
-        .error-icon:hover .error-popup {
-            visibility: visible;
-        }
-        input {
-            width: 100%;
-            height: 40px;
-            border: none;
-            outline: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-radius: 20px;
-            padding-left: 24px;
-            box-sizing: border-box;
-            color: white;
-            background-color: $dark-blue;
-        }
-
-        input::placeholder {
-            color: rgba(29, 160, 242, 0.4);
-            font-weight: 500;
-        }
-
-        input:focus {
-            background-color: rgb(0, 15, 100);
-            font-weight: 500;
-        }
-
+      }
+      input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+      input:hover {
+        cursor: pointer;
+      }
+    }
+    button:hover {
+      .button-action {
+        color: $dark;
+        background: $primary;
+      }
+    }
+  }
+  .button-container {
+    width: 100%;
+    button {
+      .button-action {
         div {
-            position: relative;
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            font-size: 12px;
-            color: $darkest;
-            font-weight: 800;
+          position: absolute;
+          left: 8px;
         }
-
-        button {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-            font-weight: 800;
-            width: 128px;
-            height: 40px;
-            border-radius: 20px;
-            background-color: $blue;
-            color: $darkest;
-            border: none;
-            z-index: 1;
-            padding: 0 16px;
-        }
-
-        button:hover {
-            cursor: pointer;
-        }
-
-        button:focus {
-            outline: none;
-            border: none;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 128px;
-            height: 40px;
-            border-radius: 20px;
-            background-color: $blue;
-            color: $darkest;
-            border: none;
-            z-index: -1;
-        }
-
-        button:hover::before {
-            transform: scale(1.5);
-            transition: all 1s linear;
-            opacity: 0;
-        }
+        border-radius: 20px;
+      }
     }
-
-    @media (min-width: 785px) {
-        .signup-email {
-            width: 100%;
-        }
-        .signup-button {
-            width: 100%;
-        }
+    button:hover {
+      div {
+        border-color: $primary;
+        border-bottom-color: transparent;
+      }
     }
+  }
+
+  @media (min-width: 785px) {
+    .email-container {
+      width: 63%;
+    }
+    .upload-container {
+      width: 37%;
+    }
+    .input-container {
+      .error-icon {
+        right: 24px;
+      }
+    }
+    .button-container {
+      button {
+        .button-action {
+          div {
+            left: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+.css-3erfox-style-Loader:hover {
+  color: $primary;
 }

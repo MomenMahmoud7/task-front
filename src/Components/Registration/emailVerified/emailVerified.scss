@@ -1,4 +1,4 @@
-.email-verification-container {
+.email-verified-container {
     display: flex;
     flex-wrap: wrap;
     border-radius: 8px;
@@ -16,7 +16,8 @@
       .image {
         width: 200px;
         height: 200px;
-        background-image: url(../../Images/email-verify-illustration.svg);
+        background-size: cover;
+        background-image: url(../../Images/launch.jpg);
       }
     }
   }

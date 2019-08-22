@@ -1,13 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { GlobalContext } from '../../Contexts/GlobalContext';
-import { TiWarning } from 'react-icons/ti';
+import { SignupContext } from '../../Contexts/SignupContext';
+import { TiWarning, TiDelete, TiChevronRight } from 'react-icons/ti';
+import ClipLoader from 'react-spinners/ClipLoader';
 import * as Yup from 'yup';
 import './login.scss';
+import Facebook from './facebook';
 
 const Login = props => {
-  const { handleUserStatus } = useContext(GlobalContext);
+  const { handleLogin } = useContext(GlobalContext);
+  const { handleSignupStatus } = useContext(SignupContext);
+  const [pending, setPending] = useState(false);
 
   const loginSchema = Yup.object().shape({
     email: Yup.string()
@@ -20,66 +25,56 @@ const Login = props => {
       initialValues={{
         email: '',
         password: '',
-        signinError: ''
+        emailAfter: '',
+        passwordAfter: ''
       }}
       validationSchema={loginSchema}
       onSubmit={async (values, { setSubmitting, setErrors }) => {
         setSubmitting(false);
+        setPending(true);
         const { email, password } = values;
-        const res = await fetch(
-          'https://api-lb.herokuapp.com/api/users/login',
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              email,
-              password
-            }),
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8'
-            }
-          }
-        );
-        const loginResult = await res.json();
-        console.log(loginResult);
-        if (!loginResult.error) {
-          console.log('no error');
-        } else {
-          const { code } = loginResult.error;
-          if (code === 'INVALID_LOGIN') {
-            setErrors({ signinError: 'Wrong username or password' });
-          } else if (code === 'UNVERIFIED_PHONE') {
-            handleUserStatus('phoneverification');
-            props.history.push('/phoneverification');
-          } else {
-            handleUserStatus('emailverification');
-            props.history.push('/emailverification');
-          }
-        }
+        handleLogin(email, password, setErrors, handleSignupStatus, props);
       }}
     >
       {({ isSubmitting }) => (
         <Form className='login-container'>
           <div className='login-header'>
-            <h1>Log In</h1>
+            <h2>Log In</h2>
           </div>
           <div className='login-body'>
-            <div>
+            <div className='input-container'>
               <Field name='email' placeholder='Email' />
               <ErrorMessage name='email'>
                 {name => (
                   <div className='error-icon'>
-                    <TiWarning size='28px' color='white' />
+                    <TiWarning size='24px' color='yellow' />
+                    <div className='error-popup warning'>{name}</div>
+                  </div>
+                )}
+              </ErrorMessage>
+              <ErrorMessage name='emailAfter'>
+                {name => (
+                  <div className='error-icon'>
+                    <TiDelete size='24px' color='red' />
                     <div className='error-popup'>{name}</div>
                   </div>
                 )}
               </ErrorMessage>
             </div>
-            <div>
+            <div className='input-container'>
               <Field name='password' type='password' placeholder='Password' />
               <ErrorMessage name='password'>
                 {name => (
                   <div className='error-icon'>
-                    <TiWarning size='28px' color='white' />
+                    <TiWarning size='24px' color='yellow' />
+                    <div className='error-popup warning'>{name}</div>
+                  </div>
+                )}
+              </ErrorMessage>
+              <ErrorMessage name='passwordAfter'>
+                {name => (
+                  <div className='error-icon'>
+                    <TiDelete size='24px' color='red' />
                     <div className='error-popup'>{name}</div>
                   </div>
                 )}
@@ -88,10 +83,21 @@ const Login = props => {
             <div>
               <ErrorMessage name='signinError' component='div' />
             </div>
-            <div>
+            <div className='input-container button-container'>
               <button type='submit' disabled={isSubmitting}>
-                Log In
+                <div className='button-action'>Login</div>
+                <div className='button-label'>
+                  {pending ? (
+                    <ClipLoader sizeUnit={'px'} size={24} color={'#1DA1F2'} />
+                  ) : (
+                    <TiChevronRight size='1.4em' />
+                  )}
+                </div>
               </button>
+            </div>
+            <div className='social'>
+              <div className='or'>Or</div>
+              <Facebook />
             </div>
             Don't have an account? &nbsp;&nbsp;
             <br />
